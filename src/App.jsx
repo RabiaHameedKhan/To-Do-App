@@ -1,12 +1,17 @@
 import React, { useState } from 'react';
-import './index.css';  // Make sure this file exists
+import './index.css';  
 
 const App = () => {
 
     const [inputlist, setinput]= useState("");
+    const [items, setitems]=useState([]);
 
     const itemEvent =(event)=>{
         setinput(event.target.value);
+    }
+
+    const add =()=>{
+        
     }
 
   return (
@@ -14,9 +19,12 @@ const App = () => {
       <h1>TO DO APP</h1>
       <br />
       <input type="text" placeholder="Enter task" onChange={itemEvent} />
-      <button>+</button>
+      <button onClick={add}>+</button>
       <ol>
-        <li>{inputlist}</li>
+        {/* <li>{inputlist}</li> */}
+        items.map((itemval)=>{
+            return <li>{itemval</li>;
+        }})
       </ol>
     </>
   );
