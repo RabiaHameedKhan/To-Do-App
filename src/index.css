@@ -1,28 +1,181 @@
+/* Layout and background */
 body {
-  background-color: #121212;
-  color: white;
-  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(to right, #e6f7f1, #fff6e6);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Centered glassy container */
+.container {
+  background: rgba(255, 255, 255, 0.25);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-radius: 20px;
+  padding: 40px 30px;
+  width: 90%;
+  max-width: 450px;
   text-align: center;
-  padding: 50px;
+  color: #2e2e2e;
+}
+
+/* Heading */
+h1 {
+  margin-bottom: 20px;
+  font-size: 30px;
+  color: #355e3b;
+}
+
+/* Input and button layout */
+.input-container {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 30px;
+  flex-wrap: wrap;
 }
 
 input {
   padding: 10px;
-  width: 250px;
-  margin-right: 10px;
-  border: none;
-  border-radius: 5px;
+  flex: 1;
+  min-width: 200px;
+  border-radius: 8px;
+  border: 1px solid #cfe8dc;
+  font-size: 16px;
+  outline: none;
+  background: #ffffff;
+  color: #2e2e2e;
 }
 
-button {
-  padding: 10px 20px;
-  background-color: #1e88e5;
-  color: white;
+.edit-btn {
+  background: transparent;
   border: none;
-  border-radius: 5px;
+  padding: 6px 10px;
   cursor: pointer;
+  font-size: 18px;
+  color: inherit;
+  border-radius: 6px;
+  transition: background-color 0.3s ease;
+}
+
+.edit-btn:hover {
+  background-color: #a4d4ae; /* or your preferred color */
+}
+
+
+button {
+  padding: 10px 16px;
+  background-color: #a4d4ae;
+  color: #2e2e2e;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background 0.3s ease;
 }
 
 button:hover {
-  background-color: #1565c0;
+  background-color: #8fcda0;
+}
+
+/* List styling */
+ol {
+  padding: 0;
+  list-style: none;
+  max-height: 300px;
+  overflow-y: auto;
+  text-align: left;
+}
+
+li {
+  background-color: rgba(255, 255, 255, 0.6);
+  margin: 8px 0;
+  padding: 12px 16px;
+  border-radius: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: background 0.3s;
+  cursor: pointer;
+}
+
+li:hover {
+  background-color: rgba(255, 255, 255, 0.8);
+}
+
+.completed {
+  text-decoration: line-through;
+  color: #7a9c87;
+}
+
+.delete-btn {
+  background: transparent;
+  border: none;
+  font-size: 18px;
+  color: #e57373;
+  cursor: pointer;
+}
+
+.delete-btn:hover {
+  color: #d32f2f;
+}
+
+.tick-icon {
+  font-size: 20px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  user-select: none;
+}
+
+.completed span {
+  text-decoration: line-through;
+  color: #7a9c87; /* or your theme's completed color */
+}
+
+li {
+  display: flex;
+  align-items: center;
+}
+
+li > span,
+li > input {
+  flex: 1;
+}
+
+input[type="text"] {
+  font-size: 16px;
+  padding: 6px 8px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+
+button {
+  margin-left: 8px;
+  cursor: pointer;
+  border-radius: 6px;
+  border: none;
+  padding: 6px 10px;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #d1d1d1;
+}
+
+
+.footer {
+  text-align: center;
+  margin-top: 30px;
+  font-size: 14px;
+  color: #2e2e2e;
+  user-select: none;
 }
