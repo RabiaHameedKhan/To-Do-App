@@ -1,9 +1,23 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./index.css";
 
 const App = () => {
   const [inputList, setInput] = useState("");
   const [items, setItems] = useState([]);
+  const [currentTime, setCurrentTime] = useState(new Date().toLocaleTimeString());
+  const [lastUpdated, setLastUpdated] = useState("Never");
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentTime(new Date().toLocaleTimeString());
+    }, 1000);
+    return () => clearInterval(interval);
+  }, []);
+
+  const updateItems = (newItems) => {
+    setItems(newItems);
+    setLastUpdated(new Date().toLocaleTimeString());
+  };
 
   const itemEvent = (event) => {
     setInput(event.target.value);
@@ -16,7 +30,7 @@ const App = () => {
         completed: false,
         isEditing: false,
       };
-      setItems([...items, newItem]);
+      updateItems([...items, newItem]);
       setInput("");
     }
   };
@@ -24,36 +38,50 @@ const App = () => {
   const toggleComplete = (index) => {
     const newItems = [...items];
     newItems[index].completed = !newItems[index].completed;
-    setItems(newItems);
+    updateItems(newItems);
   };
 
   const deleteItem = (index) => {
     const newItems = items.filter((_, i) => i !== index);
-    setItems(newItems);
+    updateItems(newItems);
   };
 
   const toggleEditing = (index) => {
     const newItems = [...items];
     newItems[index].isEditing = !newItems[index].isEditing;
-    setItems(newItems);
+    updateItems(newItems);
   };
 
   const handleEditChange = (index, value) => {
     const newItems = [...items];
     newItems[index].text = value;
-    setItems(newItems);
+    setItems(newItems); 
   };
 
   const saveEdit = (index) => {
     const newItems = [...items];
     newItems[index].isEditing = false;
-    setItems(newItems);
+    updateItems(newItems);
   };
 
   return (
     <>
+      
+      <h1 style={{ textAlign: "center", marginBottom: "20px" }}>
+        TO DO APP
+      </h1>
+
       <div className="container">
-        <h1>TO DO APP</h1>
+        {/* Current time */}
+        <div className ="time-display" style={{ fontWeight: "bold", fontSize: "18px", marginBottom: "5px" }}>
+           {currentTime}
+        </div>
+
+        {/* Last updated */}
+        <div style={{ fontSize: "14px", color: "#777", marginBottom: "20px" }}>
+          Last updated: {lastUpdated}
+        </div>
+
         <div className="input-container">
           <input
             type="text"
@@ -63,6 +91,7 @@ const App = () => {
           />
           <button onClick={add}>+</button>
         </div>
+
         <ol>
           {items.map((item, index) => (
             <li key={index} className={item.completed ? "completed" : ""}>
@@ -121,7 +150,6 @@ const App = () => {
         </ol>
       </div>
 
-      {/* Footer */}
       <footer className="footer">Made by Rabia Khan</footer>
     </>
   );
