@@ -29,7 +29,8 @@ const App = () => {
         text: inputList,
         completed: false,
         isEditing: false,
-      };
+      }
+      
       updateItems([...items, newItem]);
       setInput("");
     }
